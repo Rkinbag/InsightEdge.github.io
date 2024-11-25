@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accenture Reviews</title>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #383838; /* Matches --secondary-color */
+            color: #E3E3E3; /* Matches --text-color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin: 0;
+        }
+        .card {
+            background: #444; /* Matches --secondary-hover-color */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 95%; /* Ensures it fits within the iframe */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .header-text h3 {
+            font-size: 20px;
+            margin: 0;
+            color: #FFD700; /* Golden color for contrast */
+        }
+        .header-text p {
+            font-size: 14px;
+            color: #E3E3E3;
+        }
+        .rating {
+            font-size: 16px;
+            color: #2e7d32;
+            display: flex;
+            align-items: center;
+        }
+        .stars {
+            color: #FFD700; /* Gold for stars */
+        }
+        .awards {
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #E3E3E3;
+        }
+        .compare-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .compare-btn {
+            background-color: #FFD700; /* Golden button */
+            color: #242424; /* Matches --primary-color */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .compare-btn:hover {
+            background-color: #FFC107;
+        }
+        .suggestions {
+            font-size: 12px;
+            color: #E3E3E3;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="header-text">
+                <h3>Ambition Box Rating</h3>
+                <p>Based on 51.4k reviews | 3.9 Ratings</p>
+                <div class="rating">
+                    <span class="stars">★★★★☆</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="awards">
+            <span>🏆 ABECA 2024</span><br><br>
+            <span>🏆 Top 10 Companies for Women 2023</span><br><br>
+            <span>🏆 Best Workplace Culture 2023</span>
+        </div>
+
+        <div class="compare-section">
+            <!-- <button class="compare-btn">Compare with Companies</button> -->
+            <div class="suggestions">
+                Suggestions: Compare with similar companies like <strong>TCS</strong>, <strong>Wipro</strong>, and <strong>Infosys</strong>.
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

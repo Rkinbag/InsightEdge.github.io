@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription with Usage</title>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #383838; /* Matches --secondary-color */
+            color: #E3E3E3; /* Matches --text-color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin: 0;
+        }
+
+        .card {
+            background: #444; /* Matches --secondary-hover-color */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 95%; /* Ensures it fits within the iframe */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .header h2 {
+            font-size: 20px;
+            margin: 0;
+            color: #FFD700; /* Golden color for the title */
+        }
+
+        .header img {
+            height: 24px;
+            margin-left: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #555;
+            padding: 8px;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #555;
+            color: #E3E3E3;
+            text-align: center;
+        }
+
+        .status-dot {
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .active {
+            background-color: #2e7d32;
+        }
+
+        .bar-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .bar {
+            height: 14px;
+            background-color: #555;
+            border-radius: 7px;
+            overflow: hidden;
+            flex: 1;
+            margin-right: 8px;
+        }
+
+        .bar-fill {
+            height: 100%;
+            transition: width 0.2s ease;
+        }
+
+        .low-consumption {
+            background-color: #528056; /* Green for low consumption */
+        }
+
+        .high-consumption {
+            background-color: #f0756c; /* Red for high consumption */
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            margin-top: 16px;
+            gap: 10px;
+            /* max-height: 20px; */
+        }
+
+        .button {
+            background-color: #FFD700; /* Matches the title's gold color */
+            color: #242424; /* Matches --primary-color */
+            border: none;
+            border-radius: 5px;
+            padding: 8px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #FFC107;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <h2>Subscription with Usage</h2>
+            <img src="https://cdn.pixabay.com/animation/2022/12/20/08/31/08-31-33-442_512.gif" alt="Icon">
+        </div>
+        <p>Resdex Enterprise</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Product</th>
+                    <th>Consumption</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="status-dot active"></span></td>
+                    <td>RESDEX_LOGIN</td>
+                    <td>
+                        <div class="bar-container" style="display: flex; justify-content: center; align-items: center;">
+                            <!-- <div class="bar">
+                                <div class="bar-fill low-consumption" style="width: 45%;"></div>
+                            </div> -->
+                            <span>545</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="status-dot active"></span></td>
+                    <td>CVACCESS</td>
+                    <td>
+                        <div class="bar-container">
+                            <div class="bar">
+                                <div class="bar-fill high-consumption" style="width: 96.32%;"></div>
+                            </div>
+                            <span>96.32%</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="status-dot active"></span></td>
+                    <td>BRANDED_EMAIL</td>
+                    <td>
+                        <div class="bar-container">
+                            <div class="bar">
+                                <div class="bar-fill high-consumption" style="width: 87.81%;"></div>
+                            </div>
+                            <span>87.81%</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="status-dot active"></span></td>
+                    <td>HOT_VACANCY</td>
+                    <td>
+                        <div class="bar-container">
+                            <div class="bar">
+                                <div class="bar-fill high-consumption" style="width: 93.02%;"></div>
+                            </div>
+                            <span>93.02%</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- <td><span class="status-dot active"></span></td>
+                    <td>EHIRE</td>
+                    <td>
+                        <div class="bar-container">
+                            <div class="bar">
+                                <div class="bar-fill low-consumption" style="width: 3%;"></div>
+                            </div>
+                            <span>3%</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="status-dot active"></span></td>
+                    <td>TALENT_PULSE</td>
+                    <td>
+                        <div class="bar-container">
+                            <div class="bar">
+                                <div class="bar-fill low-consumption" style="width: 67%;"></div>
+                            </div>
+                            <span>67%</span>
+                        </div>
+                    </td>
+                </tr> -->
+            </tbody>
+        </table>
+
+        <!-- <div class="button-group">
+            <button class="button">Subscription Report</button>
+            <button class="button">Usage Report</button>
+        </div> -->
+    </div>
+</body>
+</html>

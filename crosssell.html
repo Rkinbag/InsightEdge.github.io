@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cross Sell Opportunities</title>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #383838; /* Matches --secondary-color */
+            color: #E3E3E3; /* Matches --text-color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin: 0;
+        }
+        .card {
+            background: #444; /* Matches --secondary-hover-color */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 95%; /* Ensures it fits within the iframe */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #FFD700; /* Golden color */
+            text-align: center;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Responsive grid */
+            gap: 10px; /* Space between grid items */
+        }
+        .widget {
+            background: #383838; /* Matches the body background */
+            border: 1px solid #555; /* Subtle border for separation */
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 5px; /* Reduced spacing */
+        }
+        .product-name {
+            font-weight: bold;
+            font-size: 14px;
+            color: #FFD700; /* Golden color for product names */
+        }
+        .status {
+            font-size: 16px;
+        }
+        .usage-type {
+            font-size: 12px;
+            color: #E3E3E3;
+        }
+    </style>
+</head>
+<body style="overflow: hidden;">
+    <div class="card">
+        <div class="title">Cross Sell Opportunities</div>
+        <div class="container">
+            <div class="widget">
+                <div class="product-header">
+                    <div class="product-name">Resdex</div>
+                    <div class="status" style="color: green;">✔</div>
+                </div>
+                <div class="usage-type">High Usage</div>
+            </div>
+            <div class="widget">
+                <div class="product-header">
+                    <div class="product-name">Job Postings</div>
+                    <div class="status" style="color: green;">✔</div>
+                </div>
+                <div class="usage-type">High Usage</div>
+            </div>
+            <div class="widget">
+                <div class="product-header">
+                    <div class="product-name">Branding</div>
+                    <div class="status" style="color: green;">✔</div>
+                </div>
+                <div class="usage-type">High Usage</div>
+            </div>
+            <div class="widget">
+                <div class="product-header">
+                    <div class="product-name">Ehire</div>
+                    <div class="status" style="color: red;">✖</div>
+                </div>
+                <div class="usage-type">No Usage</div>
+            </div>
+            <div class="widget">
+                <div class="product-header">
+                    <div class="product-name">Hirist</div>
+                    <div class="status">🙋</div>
+                </div>
+                <div class="usage-type">Based on tech demand</div>
+            </div>
+            <div class="widget">
+                <div class="product-header">
+                    <div class="product-name">IIMjobs</div>
+                    <div class="status">🙋</div>
+                </div>
+                <div class="usage-type">Based on management role demand</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

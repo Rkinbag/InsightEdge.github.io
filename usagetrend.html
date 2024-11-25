@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usage Trend Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        canvas {
+            max-width: 100%;
+            margin-top: 30px;
+        }
+        .chart-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .chart-wrapper {
+            width: 31%; /* Adjusting width so that 3 charts fit evenly */
+        }
+        .insight {
+            margin: 20px 0;
+        }
+        .arrow {
+            font-size: 1.2em;
+        }
+        #myChart {
+            max-width: 800px; /* Decreased width to half of previous */
+            max-height: 1600px; /* Decreased height to half of previous */
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Usage Trend Report</h1>
+
+    <h2>CV Views Trend Over the Last Three Years</h2>
+    <canvas id="myChart"></canvas>
+
+    <h2>Insights on Year-on-Year Usage</h2>
+    <div class="insight">
+        <p><strong>2020 to 2021:</strong> A remarkable increase of 139% in CV Views, indicating a response to job market shifts as many professionals sought to update their resumes during the post-pandemic recovery. <span class="arrow" style="color: green;">↑ 139%</span></p>
+        <p><strong>2021 to 2022:</strong> A decline of approximately 24%, possibly due to market saturation and employers slowing down hiring after the significant ramp-up in 2021. <span class="arrow" style="color: red;">↓ 24%</span></p>
+        <p><strong>2022 to 2023:</strong> A further 25% decrease, potentially signaling a more competitive job market where candidates are selective in their applications amidst economic uncertainties. <span class="arrow" style="color: red;">↓ 25%</span></p>
+        <p><strong>2023 to 2024 (until October):</strong> An increase of around 8% in CV Views, suggesting a resurgence in job-seeking activity, possibly driven by improved market conditions and increased confidence in hiring. <span class="arrow" style="color: green;">↑ 8%</span></p>
+    </div>
+
+    <h2>Last 6 Months Usage Trend</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Month-Year</th>
+                <th>CV Views</th>
+                <th>Searches</th>
+                <th>Resdex Quota Consumed</th>
+                <th>Job Posting Quota Consumed</th>
+                <th>Total Mails Sent</th>
+                <th>YOY Change (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Apr-24</td><td>239520</td><td>163701</td><td>119125</td><td>41806</td><td>45553</td><td>8.5%</td></tr>
+            <tr><td>May-24</td><td>276673</td><td>177074</td><td>149996</td><td>45165</td><td>54850</td><td>10.2%</td></tr>
+            <tr><td>Jun-24</td><td>254366</td><td>155465</td><td>146641</td><td>39999</td><td>31059</td><td>-5.3%</td></tr>
+            <tr><td>Jul-24</td><td>307854</td><td>166860</td><td>170857</td><td>33996</td><td>9598</td><td>12.4%</td></tr>
+            <tr><td>Aug-24</td><td>308041</td><td>161759</td><td>151175</td><td>51135</td><td>6874</td><td>0.3%</td></tr>
+            <tr><td>Sep-24</td><td>355134</td><td>186027</td><td>167074</td><td>31105</td><td>18275</td><td>15.8%</td></tr>
+        </tbody>
+    </table>
+
+    <h2>Insights</h2>
+    <ul>
+        <li><strong>CV Views:</strong> There was a significant peak in CV views in September 2024, showing a **15.8% increase** YOY.</li>
+        <li><strong>Search Activity:</strong> Searches have been consistently rising, particularly indicating strong engagement during the summer months.</li>
+        <li><strong>Total Mails Sent:</strong> Although tales rose in Jul-24, they have shown **inconsistent trends**, creating an opportunity for improvement.</li>
+        <li><strong>Resdex Quota Consumed:</strong> This metric has seen fluctuations; however, **overall consumption** hints at heightened recruitment activities during peak hiring seasons.</li>
+        <li><strong>Mail Response Rates:</strong> Response rates have dwindled despite increased outreach, suggesting the need for enhanced communication strategies.</li>
+    </ul>
+
+    <h2>Last 24 Months Trends Graph</h2>
+    <div class="chart-container">
+        <div class="chart-wrapper">
+            <canvas id="cvViewsChart" width="400" height="300"></canvas>
+        </div>
+        <div class="chart-wrapper">
+            <canvas id="searchesChart" width="400" height="300"></canvas>
+        </div>
+        <div class="chart-wrapper">
+            <canvas id="resdexQuotaChart" width="400" height="300"></canvas>
+        </div>
+    </div>
+
+    <h2>Conclusion</h2>
+    <p>
+        Over the past three years, the trend in CV Views has experienced notable fluctuations, reflective of the complexities within the job market influenced by various economic factors. The dramatic increase in 2021 was indicative of resilience among job seekers, while the subsequent declines point to adjustments in employment strategies in a rapidly changing landscape. The recent upward trend in 2024 raises hope for a potential recovery in job-seeking and hiring practices. 
+    </p>
+    <p>
+        As we look to the future, candidates must remain adaptable in their approach, continually tuning their CVs and application methods to stay competitive in evolving market conditions. Leveraging digital tools and presenting a robust online presence will remain crucial for success in job hunting.
+    </p>
+
+    <script>
+        const labels = [
+            'Sep-22', 'Oct-22', 'Nov-22', 'Dec-22', 'Jan-23', 'Feb-23', 'Mar-23',
+            'Apr-23', 'May-23', 'Jun-23', 'Jul-23', 'Aug-23',
+            'Sep-23', 'Oct-23', 'Nov-23', 'Dec-23',
+            'Jan-24', 'Feb-24', 'Mar-24', 'Apr-24', 'May-24', 'Jun-24', 'Jul-24', 'Aug-24', 'Sep-24'
+        ];
+
+        const cvViewsData = [
+            315138, 237360, 245203, 221644, 206420, 181682, 192886,
+            182973, 188508, 181961, 193242, 210014,
+            287885, 268873, 282049, 250826,
+            236881, 241776, 245539, 239520, 276673, 254366, 307854, 308041, 355134
+        ];
+
+        const searchesData = [
+            223017, 163933, 163228, 150034, 159394, 131036, 140903,
+            123273, 140216, 158735, 153332, 157262,
+            188087, 171767, 170070, 153442,
+            147921, 153189, 168936, 163701, 177074, 155465, 166860, 161759, 186027
+        ];
+
+        const resdexQuotaData = [
+            163412, 114643, 160487, 139945, 136565, 132102, 106151,
+            116051, 102413, 119010, 111571, 117424,
+            149212, 137985, 136523, 121621,
+            138403, 141430, 143843, 119125, 149996, 146641, 170857, 151175, 167074
+        ];
+
+        const options = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+
+        new Chart(document.getElementById('cvViewsChart'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'CV Views',
+                    data: cvViewsData,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1,
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: options
+        });
+
+        new Chart(document.getElementById('searchesChart'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Searches',
+                    data: searchesData,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: options
+        });
+
+        new Chart(document.getElementById('resdexQuotaChart'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Resdex Quota Consumed',
+                    data: resdexQuotaData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: options
+        });
+
+        // Bar chart for CV Views over the last three years
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2020', '2021', '2022', '2023', '2024 (till Oct)'],
+                datasets: [{
+                    label: 'CV Views',
+                    data: [1919589, 4593327, 3496725, 2627319, 2844223],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.4)',  // Light teal for 2020
+                        'rgba(75, 192, 192, 0.6)',  // Teal for 2021
+                        'rgba(75, 192, 192, 0.8)',  // Darker teal for 2022
+                        'rgba(75, 192, 192, 1)',     // Dark teal for 2023
+                        'rgba(255, 99, 132, 0.4)'   // Light red for 2024 (till Oct)
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Number of CV Views'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'CV Views from 2020 to 2024'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.dataset.label + ': ' + tooltipItem.raw;
+                            }
+                        }
+                    }
+                },
+                elements: {
+                    bar: {
+                        borderWidth: 2
+                    }
+                },
+            }
+        });
+
+        // Adding YoY percentage labels on top of bars
+        const percentages = [null, 139, -24, -25, 8]; // YoY percentage values
+        myChart.data.datasets[0].data.forEach((value, index) => {
+            const percentage = percentages[index];
+            const yPosition = myChart.getDatasetMeta(0).data[index].y;
+            const xPosition = myChart.getDatasetMeta(0).data[index].x;
+
+            // Determine the color based on the sign of percentage
+            const arrowColor = percentage < 0 ? 'red' : 'green';
+            const arrowSymbol = percentage < 0 ? '↓ ' : '↑ ';
+            const labelText = `${arrowSymbol}${Math.abs(percentage)}%`;
+
+            ctx.font = 'bold 12px Arial';
+            ctx.fillStyle = arrowColor;
+            ctx.fillText(labelText, xPosition - 10, yPosition - 10);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Accenture AmbitionBox Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            font-size: 14px; /* Decreased font size */
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 20px auto;
+        }
+        h1 {
+            color: #007bff;
+            text-align: center;
+            font-size: 24px; /* Decreased size */
+        }
+        h2 {
+            color: #333;
+            margin-top: 20px;
+            font-size: 18px; /* Decreased size */
+        }
+        p, ul {
+            margin: 10px 0;
+            line-height: 1.4; /* Slightly reduced line height */
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .table th, .table td {
+            padding: 10px; /* Reduced padding */
+            text-align: left;
+            border: 1px solid #ddd;
+            font-size: 14px; /* Decreased font size for table content */
+        }
+        .table th {
+            background-color: #f8f9fa;
+        }
+        .highlight {
+            color: #007bff;
+            font-weight: bold;
+        }
+        .market-comparison {
+            background-color: #f1f8ff;
+            padding: 8px; /* Reduced padding */
+            border-radius: 5px;
+        }
+        .percentage {
+            font-weight: bold;
+        }
+        .feedback {
+            margin-top: 30px;
+        }
+        .feedback .section-title {
+            font-size: 16px; /* Decreased font size */
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+        .feedback ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .feedback ul li {
+            margin-bottom: 6px; /* Reduced spacing between list items */
+        }
+        .feedback ul li span {
+            font-weight: bold;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Accenture AmbitionBox Report</h1>
+        
+
+        
+        <!-- Employee Ratings -->
+        <div class="ratings">
+            <h2>1. Employee Ratings (Out of 5)</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Rating</th>
+                        <th>Employee Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Overall Rating</td>
+                        <td>4.1</td>
+                        <td>Recognized for work-life balance and learning opportunities.</td>
+                    </tr>
+                    <tr>
+                        <td>Career Growth</td>
+                        <td>4.2</td>
+                        <td>Employees mention frequent promotions and skill enhancement programs.</td>
+                    </tr>
+                    <tr>
+                        <td>Work-Life Balance</td>
+                        <td>3.9</td>
+                        <td>Challenging deadlines, but flexible work arrangements help.</td>
+                    </tr>
+                    <tr>
+                        <td>Salary & Benefits</td>
+                        <td>4.0</td>
+                        <td>Competitive pay, especially in IT and consulting roles.</td>
+                    </tr>
+                    <tr>
+                        <td>Job Security</td>
+                        <td>4.0</td>
+                        <td>Stable organization, but project availability matters.</td>
+                    </tr>
+                    <tr>
+                        <td>Skill Development</td>
+                        <td>4.3</td>
+                        <td>Strong focus on upskilling through internal learning platforms.</td>
+                    </tr>
+                    <tr>
+                        <td>Work Satisfaction</td>
+                        <td>4.2</td>
+                        <td>Employees feel motivated by challenging and innovative projects.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Top Job Roles with Salary Insights -->
+        <div class="jobs">
+            <h2>2. Top Job Roles with Salary Insights</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Job Role</th>
+                        <th>Average Salary (₹)</th>
+                        <th>Range (₹)</th>
+                        <th>Compared to Market</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                <tr>
+                <td>Senior Software Engineer</td>
+                <td>₹12.8 Lakhs</td>
+                <td>₹10.5 Lakhs – ₹18 Lakhs</td>
+                <td class="comparison positive">📈 15% above market</td>
+            </tr>
+            <tr>
+                <td>Team Lead</td>
+                <td>₹17 Lakhs</td>
+                <td>₹14 Lakhs – ₹25 Lakhs</td>
+                <td class="comparison positive">📈 20% above market</td>
+            </tr>
+            <tr>
+                <td>Software Engineer</td>
+                <td>₹7.6 Lakhs</td>
+                <td>₹6 Lakhs – ₹11 Lakhs</td>
+                <td class="comparison negative">📉 5% below market</td>
+            </tr>
+            <tr>
+                <td>Business Analyst</td>
+                <td>₹9.8 Lakhs</td>
+                <td>₹8 Lakhs – ₹15 Lakhs</td>
+                <td class="comparison positive">📈 10% above market</td>
+            </tr>
+            <tr>
+                <td>Data Analyst</td>
+                <td>₹7.3 Lakhs</td>
+                <td>₹5.5 Lakhs – ₹12 Lakhs</td>
+                <td class="comparison negative">📉 8% below market</td>
+            </tr>
+        </tbody>
+            </table>
+        </div>
+        
+        <!-- Likes and Dislikes -->
+        <div class="feedback">
+            <h2>4. Employee Feedback</h2>
+            <div class="likes">
+                <div class="section-title" style="font-size: 18px; font-weight: bold; color: #28a745; margin-bottom: 10px;">👍 Likes</div>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>“The inclusive culture that Accenture has makes all the difference” (<span style="font-weight: bold; color: #555;">856 reviews</span>)</li>
+                    <li>“It was a great place to learn and work on different technologies” (<span style="font-weight: bold; color: #555;">689 reviews</span>)</li>
+                    <li>“There is a friendly environment to work” (<span style="font-weight: bold; color: #555;">348 reviews</span>)</li>
+                    <li>“The team members are very good” (<span style="font-weight: bold; color: #555;">162 reviews</span>)</li>
+                    <li>“The company's rewards and extra benefits are good” (<span style="font-weight: bold; color: #555;">96 reviews</span>)</li>
+                </ul>
+            </div>
+            <div class="dislikes" style="margin-top: 20px;">
+                <div class="section-title" style="font-size: 18px; font-weight: bold; color: #dc3545; margin-bottom: 10px;">👎 Dislikes</div>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>“This will affect variable pay” (<span style="font-weight: bold; color: #555;">1.1k reviews</span>)</li>
+                    <li>“There is no value for the actual hard workers” (<span style="font-weight: bold; color: #555;">480 reviews</span>)</li>
+                    <li>“One needs to be proactive to ensure leadership visibility” (<span style="font-weight: bold; color: #555;">462 reviews</span>)</li>
+                    <li>“We were working more than the shift time” (<span style="font-weight: bold; color: #555;">246 reviews</span>)</li>
+                    <li>“I was assigned manual testing, which offered the least career growth” (<span style="font-weight: bold; color: #555;">218 reviews</span>)</li>
+                </ul>
+            </div>
+            <div class="feedback-table" style="margin-top: 30px;">
+                <h2 style="margin-bottom: 20px;">Peer Insights</h2>
+         <table class="table">
+                    <thead>
+            <tr>
+                <th>Company</th>
+                <th>Followers</th>
+                <th>Overall</th>
+                <th>WorkLife</th>
+                <th>Skill Development</th>
+                <th>Compensation & Benefits</th>
+                <th>Job Security</th>
+                <th>Company Culture</th>
+                <th>Career Growth</th>
+                <th>Work Satisfaction</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Accenture</td>
+                <td>290000</td>
+                <td class="highlight"><i class="fas fa-star"></i>3.9</td>
+                <td>3.7</td>
+                <td class="highlight"><i class="fas fa-star"></i>3.8</td>
+                <td class="highlight"><i class="fas fa-star"></i>3.6</td>
+                <td>3.8</td>
+               <td class="highlight"><i class="fas fa-star"></i>3.8</td>
+                <td class="highlight"><i class="fas fa-star"></i>3.2</td>
+                <td class="highlight"><i class="fas fa-star"></i>3.6</td>
+
+            </tr>
+            <tr>
+                <td>TCS</td>
+                <td class="highlight"><i class="fas fa-star"></i>566477</td>
+                <td>3.72</td>
+                <td class="highlight"><i class="fas fa-star"></i>3.82</td>
+                <td>3.59</td>
+                <td>2.82</td>
+                <td class="highlight"><i class="fas fa-star"></i>4.55</td>
+                <td>3.63</td>
+                <td>2.7</td>
+                <td>3.36</td>
+
+            </tr>
+            <tr>
+                <td>Cognizant</td>
+                <td>201197</td>
+                <td>3.8</td>
+                <td>3.64</td>
+                <td>3.7</td>
+                <td>3.4</td>
+                <td>3.59</td>
+                <td>3.63</td>
+                <td>3.15</td>
+                <td>3.44</td>
+
+            </tr>
+            <tr>
+                <td>Wipro</td>
+                <td>138169</td>
+                <td>3.74</td>
+                <td>3.68</td>
+                <td>3.67</td>
+                <td>3.14</td>
+                <td>3.84</td>
+                <td>3.66</td>
+                <td>3.01</td>
+                <td>3.46</td>
+
+            </tr>
+            <tr>
+                <td>Infosys</td>
+                <td>83728</td>
+                <td>3.72</td>
+                <td>3.75</td>
+                <td>3.76</td>
+                <td>2.82</td>
+                <td>4.19</td>
+                <td>3.79</td>
+                <td>2.8</td>
+                <td>3.41</td>
+
+            </tr>
+            <tr>
+                <td>Capgemini</td>
+                <td>77692</td>
+                <td>3.77</td>
+                <td>3.81</td>
+                <td>3.75</td>
+                <td>3.09</td>
+                <td>3.87</td>
+                <td>3.73</td>
+                <td>2.93</td>
+                <td>3.5</td>
+
+            </tr>
+            <tr>
+                <td>HCLTech</td>
+                <td>77681</td>
+                <td>3.58</td>
+                <td>3.61</td>
+                <td>3.41</td>
+                <td>2.92</td>
+                <td>3.86</td>
+                <td>3.44</td>
+                <td>2.7</td>
+                <td>3.31</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+	
+
+ <div class="insights-section">
+  <h2>Insights for Accenture vs. Peers</h2>
+
+  <div class="insight">
+    <h3>1. Followers</h3>
+    <p>Accenture has a relatively high follower count of 290,000, ranking second only to TCS (566,477). This indicates strong brand presence, especially compared to other peers like Wipro, Infosys, Capgemini, and HCLTech, which have significantly fewer followers.</p>
+  </div>
+
+  <div class="insight">
+    <h3>2. Overall Rating</h3>
+    <p>With an overall rating of 3.9, Accenture stands out as the highest among its peers. This suggests strong overall employee satisfaction compared to competitors like TCS, Cognizant, and Capgemini, which have lower overall ratings.</p>
+  </div>
+
+  <div class="insight">
+    <h3>3. Work-Life Balance</h3>
+    <p>Accenture's work-life balance rating of 3.7 is slightly lower than TCS (3.82) and Capgemini (3.81). However, it is still above other competitors like Cognizant (3.64) and HCLTech (3.61), indicating good work-life balance but potential areas for improvement.</p>
+  </div>
+
+  <div class="insight">
+    <h3>4. Skill Development</h3>
+    <p>Accenture excels in skill development with a rating of 3.8, the highest among its peers. This suggests that Accenture offers better opportunities for skill growth compared to TCS, Cognizant, Wipro, and HCLTech.</p>
+  </div>
+
+  <div class="insight">
+    <h3>5. Compensation & Benefits</h3>
+    <p>Accenture's compensation and benefits rating of 3.6 is significantly higher than peers like TCS (2.82), Cognizant (3.4), and Capgemini (3.09), highlighting better perceived financial benefits and compensation packages.</p>
+  </div>
+
+  <div class="insight">
+    <h3>6. Job Security</h3>
+    <p>Accenture scores 3.8 in job security, but it lags behind TCS (4.55) and Infosys (4.19). This suggests that while Accenture offers good job security, competitors provide even better stability.</p>
+  </div>
+
+  <div class="insight">
+    <h3>7. Company Culture</h3>
+    <p>Accenture performs well in company culture with a rating of 3.8, surpassing most of its peers. This suggests a positive work environment, though it could focus on aligning even more closely with competitors like Infosys (3.79) and Capgemini (3.73).</p>
+  </div>
+
+  <div class="insight">
+    <h3>8. Career Growth</h3>
+    <p>With a career growth rating of 3.2, Accenture provides relatively good opportunities for advancement compared to TCS (2.7), Infosys (2.8), Capgemini (2.93), and HCLTech (2.7). This suggests competitive career development opportunities.</p>
+  </div>
+
+  <div class="insight">
+    <h3>9. Work Satisfaction</h3>
+    <p>Accenture's work satisfaction rating of 3.6 is higher than most of its peers, including TCS, Cognizant, and HCLTech. However, it could focus on improving work satisfaction further to match the levels of Capgemini (3.5) and Wipro (3.46).</p>
+  </div>
+
+
+</div>
+</body>
+</html>

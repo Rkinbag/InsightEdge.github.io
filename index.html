@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Added Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <title>InsightEdge</title>
+    <style>
+        /* Sections */
+        .s1, .s2, .s3, .s4, .s5, .s6, .s7 {
+            display: none;
+            color: #fff;
+        }
+
+        .newbtn{
+            background-color: #FFD700; /* Matches the title's gold color */
+            color: #242424; /* Matches --primary-color */
+            border: none;
+            border-radius: 5px;
+            padding: 8px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .response {
+            background-color: #444444;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 20px auto;
+        }
+
+        .response h1 {
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .response h2 {
+            font-size: 16px;
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        .response p {
+            margin: 10px 0;
+        }
+
+        .highlight {
+            color: #d63384;
+            font-weight: bold;
+        }
+
+        .tile {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .know-more-btn, .compare-btn, .myallnew, .myallnewbtn, .finalbtn {
+            position: absolute;
+            bottom: -50px;
+            right: 20px;
+            background-color: #FFD700;
+            color: #242424;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            z-index: 10;
+        }
+
+        .tile:hover .know-more-btn, .tile:hover .compare-btn, .tile:hover .myallnew, .tile:hover .myallnewbtn, .tile:hover .finalbtn {
+            bottom: 20px;
+        }
+
+        .know-more-btn:hover, .compare-btn:hover {
+            background-color: #FFC107;
+        }
+
+        /* Third Tile Buttons */
+        .third-tile-buttons {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .third-tile-buttons button {
+            background-color: #FFD700;
+            color: #242424;
+            border: none;
+            padding: 8px 15px;
+            font-size: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .tile:hover .third-tile-buttons {
+            bottom: 20px;
+        }
+
+        .third-tile-buttons button:hover {
+            background-color: #FFC107;
+        }
+
+        /* Table Styling */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .table th, .table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        .table th {
+            background-color: #0000;
+        }
+
+        /* Function for s3 */
+        .tablenew {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .tablenew, th, td {
+            border: 1px solid #ccc;
+        }
+        .tablenew th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        .tablenew th {
+            background-color: #2c3e50;
+            color: white;
+        }
+        .summary {
+            margin-top: 30px;
+            font-size: 1.2em;
+        }
+
+        /* For s4 */
+        .s4 table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .s4 th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        .s4 th {
+            background-color: #444444;
+        }
+        .s4 h1, h2, h3 {
+            color: #fef8f8;
+        }
+        .s4 canvas {
+            max-width: 100%;
+            margin-top: 30px;
+        }
+        .s4 .chart-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .s4 .chart-wrapper {
+            width: 31%; /* Adjusting width so that 3 charts fit evenly */
+        }
+        .s4 .insight {
+            margin: 20px 0;
+        }
+        .s4 .arrow {
+            font-size: 1.2em;
+        }
+        .myChart {
+            max-width: 800px; /* Decreased width to half of previous */
+            max-height: 1600px; /* Decreased height to half of previous */
+            margin: 10px auto;
+        }
+        /* for s5 */
+        .s5 h1 {
+            text-align: center;
+            color: #fff;
+        }
+        .s5 h2 {
+            color: #fff;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .s5 table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background: #444444;
+        }
+        .s5 th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .s5 th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .s5 .trophy {
+            font-size: 20px;
+            color: gold;
+        }
+
+        /* For s6 */
+        .s6 h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .s6 table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .s6 th, td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .s6 th {
+            background-color: #3498db;
+            color: white;
+        }
+        .s6 .summary {
+            padding: 20px;
+            background-color: #444444;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .s6 .comparison {
+            padding: 20px;
+            background-color: #383838;
+            border: 1px solid #fff;
+        }
+        .s6 .insight {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #383838;
+            /* border-left: 5px solid #3c763d; */
+        }
+
+        /* for s7 */
+        .s7 .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background: #444444;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .s7 h1 {
+            text-align: center;
+            color: #4CAF50;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .s7 h2, h3 {
+            color: #fff;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 5px;
+        }
+        .s7 table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .s7 table, th, td {
+            border: 1px solid #ddd;
+        }
+        .s7 th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .s7 th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .s7 tr:nth-child(even) {
+            background-color: #333333;
+        }
+        .s7 .underutilized {
+            background-color: #524242; /* light red */
+        }
+        .s7 ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .s7 .summary ul {
+            list-style-type: square;
+        }
+        .s7 .container section {
+            margin-bottom: 20px;
+        }
+        .s7 .container section:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="header" style="display: flex; justify-content: center; align-items: center; gap: 25em;">
+        <div class="mynewcontainer" style="width: 80%;">
+            <h2 class="title">Hello, I am InsightEdge</h2>
+            <h4 class="subtitle">Your everyday sales assistant bot</h4>
+        </div>
+        <img src="https://pbs.twimg.com/profile_images/1772331192085274624/PlbkwMwX_400x400.png" alt="Naukri.logo" class="naukriimg" width="85px">
+    </header>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard">
+        <!-- Tile 1 -->
+        <div class="tile">
+            <iframe src="Stat_card.html" title="Company Overview" class="tile-iframe"></iframe>
+            <button class="know-more-btn" onclick="toggleDisplay('.s1')">Know More</button>
+        </div>
+
+        <!-- Tile 2 -->
+        <div class="tile">
+            <iframe src="ab.html" title="Ambition Box Data" class="tile-iframe"></iframe>
+            <button class="compare-btn" onclick="toggleDisplay('.s2')">Compare with Companies</button>
+        </div>
+
+        <!-- Tile 3 -->
+        <div class="tile">
+            <iframe src="subscriptionwithusage.htm" title="Regdex Usage" class="tile-iframe"></iframe>
+            <div class="third-tile-buttons" style="transition: all 0.3s ease-in-out; opacity: 1; margin-bottom: -10px;">
+                <button onclick="toggleDisplay('.s3')" class="newbtn">Subscription Report</button>
+                <button onclick="toggleDisplay('.s4')" class="newbtn">Usage Report</button>
+            </div>
+        </div>
+
+        <!-- Other Tiles -->
+        <div class="tile">
+            <iframe src="recruiter.html" title="Market Trends" class="tile-iframe"></iframe>
+            <button class="myallnew" onclick="toggleDisplay('.s5')">Know more</button>
+        </div>
+        <div class="tile">
+            <iframe src="competitorinsights.html" title="Total Employees" class="tile-iframe"></iframe>
+            <button class="myallnewbtn" onclick="toggleDisplay('.s6')">Know more</button>
+        </div>
+        <div class="tile">
+            <iframe src="crosssell.html" title="Employee Retention" class="tile-iframe"></iframe>
+            <button class="finalbtn" onclick="toggleDisplay('.s7')">Know more</button>
+        </div>
+    </section>
+
+    <!-- Sections -->
+    <section class="s1">
+        <div class="response">
+            <h1>About Accenture</h1>
+            <p>
+                Accenture is a global professional services company with leading capabilities in digital, cloud, and security. 
+                Combining unmatched experience and specialized skills across more than 40 industries, we offer Strategy and Consulting, Interactive, 
+                Technology, and Operations services — all powered by the world’s largest network of Advanced Technology and Intelligent Operations centers. 
+                Our 733,000+ people deliver on the promise of technology and human ingenuity every day, serving clients in more than 120 countries.
+            </p>
+            <h2>Company Overview</h2>
+            <p><strong>Founded:</strong> 1989 (35 years old)</p>
+            <p><strong>Headquarters:</strong> Dublin, Ireland</p>
+            <p><strong>Office Locations in India:</strong> Bangalore, Hyderabad, Mumbai, Pune, Chennai, Gurgaon, Kolkata, Noida</p>
+            <p><strong>Employee Count:</strong></p>
+            <ul>
+                <li>India: 3,00,000+</li>
+                <li>Global: 7,33,000+</li>
+            </ul>
+            <p><strong>Primary Industry:</strong> IT Services & Consulting</p>
+            <p><strong>Website:</strong> <a href="https://www.accenture.com" target="_blank">accenture.com</a></p>
+            <h2>Account Details</h2>
+            <p><strong>Account Manager:</strong> <span class="highlight">Mandeep G</span></p>
+            <p><strong>Sales Branch:</strong> <span class="highlight">Bangalore</span></p>
+            <p><strong>CUSTID:</strong> <span class="highlight">CUST/006674(27117)</span></p>
+        </div>
+    </section>
+
+    <section class="s2">
+        <div class="response">
+            <h1>Accenture AmbitionBox Report</h1>
+            <h2>1. Employee Ratings (Out of 5)</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Rating</th>
+                        <th>Employee Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Overall Rating</td>
+                        <td>4.1</td>
+                        <td>Recognized for work-life balance and learning opportunities.</td>
+                    </tr>
+                    <tr>
+                        <td>Career Growth</td>
+                        <td>4.2</td>
+                        <td>Employees mention frequent promotions and skill enhancement programs.</td>
+                    </tr>
+                    <tr>
+                        <td>Work-Life Balance</td>
+                        <td>3.9</td>
+                        <td>Challenging deadlines, but flexible work arrangements help.</td>
+                    </tr>
+                    <tr>
+                        <td>Salary & Benefits</td>
+                        <td>4.0</td>
+                        <td>Competitive pay, especially in IT and consulting roles.</td>
+                    </tr>
+                    <tr>
+                        <td>Job Security</td>
+                        <td>4.0</td>
+                        <td>Stable organization, but project availability matters.</td>
+                    </tr>
+                    <tr>
+                        <td>Skill Development</td>
+                        <td>4.3</td>
+                        <td>Strong focus on upskilling through internal learning platforms.</td>
+                    </tr>
+                    <tr>
+                        <td>Work Satisfaction</td>
+                        <td>4.2</td>
+                        <td>Employees feel motivated by challenging and innovative projects.</td>
+                    </tr>
+                </tbody>
+            </table>
+        <div class="jobs">
+            <h2>2. Top Job Roles with Salary Insights</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Job Role</th>
+                        <th>Average Salary (₹)</th>
+                        <th>Range (₹)</th>
+                        <th>Compared to Market</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                <tr>
+                <td>Senior Software Engineer</td>
+                <td>₹12.8 Lakhs</td>
+                <td>₹10.5 Lakhs – ₹18 Lakhs</td>
+                <td class="comparison positive">📈 15% above market</td>
+            </tr>
+            <tr>
+                <td>Team Lead</td>
+                <td>₹17 Lakhs</td>
+                <td>₹14 Lakhs – ₹25 Lakhs</td>
+                <td class="comparison positive">📈 20% above market</td>
+            </tr>
+            <tr>
+                <td>Software Engineer</td>
+                <td>₹7.6 Lakhs</td>
+                <td>₹6 Lakhs – ₹11 Lakhs</td>
+                <td class="comparison negative">📉 5% below market</td>
+            </tr>
+            <tr>
+                <td>Business Analyst</td>
+                <td>₹9.8 Lakhs</td>
+                <td>₹8 Lakhs – ₹15 Lakhs</td>
+                <td class="comparison positive">📈 10% above market</td>
+            </tr>
+            <tr>
+                <td>Data Analyst</td>
+                <td>₹7.3 Lakhs</td>
+                <td>₹5.5 Lakhs – ₹12 Lakhs</td>
+                <td class="comparison negative">📉 8% below market</td>
+            </tr>
+        </tbody>
+            </table>
+        </div>
+
+
+        <!-- Likes and Dislikes -->
+        <div class="feedback">
+            <h2>4. Employee Feedback</h2>
+            <div class="likes">
+                <div class="section-title" style="font-size: 18px; font-weight: bold; color: #28a745; margin-bottom: 10px;">👍 Likes</div>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>“The inclusive culture that Accenture has makes all the difference” (<span style="font-weight: bold; color: #fff;">856 reviews</span>)</li>
+                    <li>“It was a great place to learn and work on different technologies” (<span style="font-weight: bold; color: #fff;">689 reviews</span>)</li>
+                    <li>“There is a friendly environment to work” (<span style="font-weight: bold; color: #fff;">348 reviews</span>)</li>
+                    <li>“The team members are very good” (<span style="font-weight: bold; color: #fff;">162 reviews</span>)</li>
+                    <li>“The company's rewards and extra benefits are good” (<span style="font-weight: bold; color: #fff;">96 reviews</span>)</li>
+                </ul>
+            </div>
+            <div class="dislikes" style="margin-top: 20px;">
+                <div class="section-title" style="font-size: 18px; font-weight: bold; color: #dc3545; margin-bottom: 10px;">👎 Dislikes</div>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>“This will affect variable pay” (<span style="font-weight: bold; color: #fff;">1.1k reviews</span>)</li>
+                    <li>“There is no value for the actual hard workers” (<span style="font-weight: bold; color: #fff;">480 reviews</span>)</li>
+                    <li>“One needs to be proactive to ensure leadership visibility” (<span style="font-weight: bold; color: #fff;">462 reviews</span>)</li>
+                    <li>“We were working more than the shift time” (<span style="font-weight: bold; color: #fff;">246 reviews</span>)</li>
+                    <li>“I was assigned manual testing, which offered the least career growth” (<span style="font-weight: bold; color: #fff;">218 reviews</span>)</li>
+                </ul>
+            </div>
+            <div class="feedback-table" style="margin-top: 30px;">
+                <h2 style="margin-bottom: 20px;">Peer Insights</h2>
+         <table class="table">
+                    <thead>
+            <tr>
+                <th>Company</th>
+                <th>Followers</th>
+                <th>Overall</th>
+                <th>WorkLife</th>
+                <th>Skill Development</th>
+                <th>Compensation & Benefits</th>
+                <th>Job Security</th>
+                <th>Company Culture</th>
+                <th>Career Growth</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Accenture</td>
+                <td>290000</td>
+                <td class="highlight"><i class="fas fa-star"></i>3.9</td>
+                <td>3.7</td>
+                <td class="highlight"><i class="fas fa-star"></i>3.8</td>
+                <td class="highlight"><i class="fas fa-star"></i>3.6</td>
+                <td>3.8</td>
+               <td class="highlight"><i class="fas fa-star"></i>3.8</td>
+                <td class="highlight"><i class="fas fa-star"></i>3.2</td>
+                <!-- <td class="highlight"><i class="fas fa-star"></i>3.6</td>   -->
+
+            </tr>
+            <tr>
+                <td>TCS</td>
+                <td class="highlight"><i class="fas fa-star"></i>566477</td>
+                <td>3.72</td>
+                <td class="highlight"><i class="fas fa-star"></i>3.82</td>
+                <td>3.59</td>
+                <td>2.82</td>
+                <td class="highlight"><i class="fas fa-star"></i>4.55</td>
+                <td>3.63</td>
+                <td>2.7</td>
+
+            </tr>
+            <tr>
+                <td>Cognizant</td>
+                <td>201197</td>
+                <td>3.8</td>
+                <td>3.64</td>
+                <td>3.7</td>
+                <td>3.4</td>
+                <td>3.59</td>
+                <td>3.63</td>
+                <td>3.15</td>
+
+            </tr>
+            <tr>
+                <td>Wipro</td>
+                <td>138169</td>
+                <td>3.74</td>
+                <td>3.68</td>
+                <td>3.67</td>
+                <td>3.14</td>
+                <td>3.84</td>
+                <td>3.66</td>
+                <td>3.01</td>
+
+            </tr>
+            <tr>
+                <td>Infosys</td>
+                <td>83728</td>
+                <td>3.72</td>
+                <td>3.75</td>
+                <td>3.76</td>
+                <td>2.82</td>
+                <td>4.19</td>
+                <td>3.79</td>
+                <td>2.8</td>
+
+            </tr>
+            <tr>
+                <td>Capgemini</td>
+                <td>77692</td>
+                <td>3.77</td>
+                <td>3.81</td>
+                <td>3.75</td>
+                <td>3.09</td>
+                <td>3.87</td>
+                <td>3.73</td>
+                <td>2.93</td>
+
+            </tr>
+            <tr>
+                <td>HCLTech</td>
+                <td>77681</td>
+                <td>3.58</td>
+                <td>3.61</td>
+                <td>3.41</td>
+                <td>2.92</td>
+                <td>3.86</td>
+                <td>3.44</td>
+                <td>2.7</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="insights-section">
+        <h2>Insights for Accenture vs. Peers</h2>
+      
+        <div class="insight">
+          <h3>1. Followers</h3>
+          <p>Accenture has a relatively high follower count of 290,000, ranking second only to TCS (566,477). This indicates strong brand presence, especially compared to other peers like Wipro, Infosys, Capgemini, and HCLTech, which have significantly fewer followers.</p>
+        </div>
+      
+        <div class="insight">
+          <h3>2. Overall Rating</h3>
+          <p>With an overall rating of 3.9, Accenture stands out as the highest among its peers. This suggests strong overall employee satisfaction compared to competitors like TCS, Cognizant, and Capgemini, which have lower overall ratings.</p>
+        </div>
+      
+        <div class="insight">
+          <h3>3. Work-Life Balance</h3>
+          <p>Accenture's work-life balance rating of 3.7 is slightly lower than TCS (3.82) and Capgemini (3.81). However, it is still above other competitors like Cognizant (3.64) and HCLTech (3.61), indicating good work-life balance but potential areas for improvement.</p>
+        </div>
+      
+        <div class="insight">
+          <h3>4. Skill Development</h3>
+          <p>Accenture excels in skill development with a rating of 3.8, the highest among its peers. This suggests that Accenture offers better opportunities for skill growth compared to TCS, Cognizant, Wipro, and HCLTech.</p>
+        </div>
+      
+        <div class="insight">
+          <h3>5. Compensation & Benefits</h3>
+          <p>Accenture's compensation and benefits rating of 3.6 is significantly higher than peers like TCS (2.82), Cognizant (3.4), and Capgemini (3.09), highlighting better perceived financial benefits and compensation packages.</p>
+        </div>
+      
+        <div class="insight">
+          <h3>6. Job Security</h3>
+          <p>Accenture scores 3.8 in job security, but it lags behind TCS (4.55) and Infosys (4.19). This suggests that while Accenture offers good job security, competitors provide even better stability.</p>
+        </div>
+      
+        <div class="insight">
+          <h3>7. Company Culture</h3>
+          <p>Accenture performs well in company culture with a rating of 3.8, surpassing most of its peers. This suggests a positive work environment, though it could focus on aligning even more closely with competitors like Infosys (3.79) and Capgemini (3.73).</p>
+        </div>
+      
+        <div class="insight">
+          <h3>8. Career Growth</h3>
+          <p>With a career growth rating of 3.2, Accenture provides relatively good opportunities for advancement compared to TCS (2.7), Infosys (2.8), Capgemini (2.93), and HCLTech (2.7). This suggests competitive career development opportunities.</p>
+        </div>
+      
+        <div class="insight">
+          <h3>9. Work Satisfaction</h3>
+          <p>Accenture's work satisfaction rating of 3.6 is higher than most of its peers, including TCS, Cognizant, and HCLTech. However, it could focus on improving work satisfaction further to match the levels of Capgemini (3.5) and Wipro (3.46).</p>
+        </div>
+    </div>
+
+    
+
+    </section>
+
+    <section class="s3">
+        <div class="response">
+            <h1>Subscription Report</h1>
+            <p>Main Product: Naukri Resdex Enterprise</p>
+            <table class="tablenew">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Total</th>
+                        <th>Consumed</th>
+                        <th>Consumed %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>CVACCESS</td>
+                        <td>1,590,000</td>
+                        <td>1,531,500</td>
+                        <td>96.3%</td>
+                    </tr>
+                    <tr>
+                        <td>BRANDED_EMAIL</td>
+                        <td>250,000</td>
+                        <td>219,514</td>
+                        <td>87.8%</td>
+                    </tr>
+                    <tr>
+                        <td>HOT_VACANCY</td>
+                        <td>411,000</td>
+                        <td>382,203</td>
+                        <td>93.0%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Active Subscriptions for Others:</h2>
+    <h3>EHIRE</h3>
+    <table class="tablenew">
+        <thead>
+            <tr>
+                <th>Total</th>
+                <th>Consumed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>20</td>
+                <td>0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>TALENT PULSE</h3>
+    <table class="tablenew">
+        <thead>
+            <tr>
+                <th>Total</th>
+                <th>Consumed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Hirist / IIMJobs / Naukri Campus</h3>
+    <p>No Subscription.</p>
+
+    <div class="summary">
+        <h2>Final Insights:</h2>
+        <ul>
+            <li>All active subscriptions are valid until the specified expiration date.</li>
+            <li>CVACCESS and HOT_VACANCY are utilized with high consumption rates, while BRANDED_EMAIL consumption is also significant.</li>
+            <li>Both EHIRE and TALENT PULSE have not yet been consumed.</li>
+            <li>No subscriptions are present for Hirist, IIMJobs, or Naukri Campus.</li>
+        </ul>
+    </div>
+        </div>
+    </section>
+
+    <section class="s4">
+        <div class="response">
+            <h1>Usage Trend Report</h1>
+
+    <h2>CV Views Trend Over the Last Three Years</h2>
+    <canvas id="myChart"></canvas>
+
+    <h2>Insights on Year-on-Year Usage</h2>
+    <div class="insight">
+        <p><strong>2020 to 2021:</strong> A remarkable increase of 139% in CV Views, indicating a response to job market shifts as many professionals sought to update their resumes during the post-pandemic recovery. <span class="arrow" style="color: green;">↑ 139%</span></p>
+        <p><strong>2021 to 2022:</strong> A decline of approximately 24%, possibly due to market saturation and employers slowing down hiring after the significant ramp-up in 2021. <span class="arrow" style="color: red;">↓ 24%</span></p>
+        <p><strong>2022 to 2023:</strong> A further 25% decrease, potentially signaling a more competitive job market where candidates are selective in their applications amidst economic uncertainties. <span class="arrow" style="color: red;">↓ 25%</span></p>
+        <p><strong>2023 to 2024 (until October):</strong> An increase of around 8% in CV Views, suggesting a resurgence in job-seeking activity, possibly driven by improved market conditions and increased confidence in hiring. <span class="arrow" style="color: green;">↑ 8%</span></p>
+    </div>
+
+    <h2>Last 6 Months Usage Trend</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Month-Year</th>
+                <th>CV Views</th>
+                <th>Searches</th>
+                <th>Resdex Quota Consumed</th>
+                <th>Job Posting Quota Consumed</th>
+                <th>Total Mails Sent</th>
+                <th>YOY Change (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Apr-24</td><td>239520</td><td>163701</td><td>119125</td><td>41806</td><td>45553</td><td>8.5%</td></tr>
+            <tr><td>May-24</td><td>276673</td><td>177074</td><td>149996</td><td>45165</td><td>54850</td><td>10.2%</td></tr>
+            <tr><td>Jun-24</td><td>254366</td><td>155465</td><td>146641</td><td>39999</td><td>31059</td><td>-5.3%</td></tr>
+            <tr><td>Jul-24</td><td>307854</td><td>166860</td><td>170857</td><td>33996</td><td>9598</td><td>12.4%</td></tr>
+            <tr><td>Aug-24</td><td>308041</td><td>161759</td><td>151175</td><td>51135</td><td>6874</td><td>0.3%</td></tr>
+            <tr><td>Sep-24</td><td>355134</td><td>186027</td><td>167074</td><td>31105</td><td>18275</td><td>15.8%</td></tr>
+        </tbody>
+    </table>
+
+    <h2>Insights</h2>
+    <ul>
+        <li><strong>CV Views:</strong> There was a significant peak in CV views in September 2024, showing a **15.8% increase** YOY.</li>
+        <li><strong>Search Activity:</strong> Searches have been consistently rising, particularly indicating strong engagement during the summer months.</li>
+        <li><strong>Total Mails Sent:</strong> Although tales rose in Jul-24, they have shown **inconsistent trends**, creating an opportunity for improvement.</li>
+        <li><strong>Resdex Quota Consumed:</strong> This metric has seen fluctuations; however, **overall consumption** hints at heightened recruitment activities during peak hiring seasons.</li>
+        <li><strong>Mail Response Rates:</strong> Response rates have dwindled despite increased outreach, suggesting the need for enhanced communication strategies.</li>
+    </ul>
+
+    <h2>Last 24 Months Trends Graph</h2>
+    <div class="chart-container">
+        <div class="chart-wrapper" style="color: #fff;">
+            <canvas id="cvViewsChart" width="400" height="300"></canvas>
+        </div>
+        <div class="chart-wrapper">
+            <canvas id="searchesChart" width="400" height="300"></canvas>
+        </div>
+        <div class="chart-wrapper">
+            <canvas id="resdexQuotaChart" width="400" height="300"></canvas>
+        </div>
+    </div>
+
+    <h2>Conclusion</h2>
+    <p>
+        Over the past three years, the trend in CV Views has experienced notable fluctuations, reflective of the complexities within the job market influenced by various economic factors. The dramatic increase in 2021 was indicative of resilience among job seekers, while the subsequent declines point to adjustments in employment strategies in a rapidly changing landscape. The recent upward trend in 2024 raises hope for a potential recovery in job-seeking and hiring practices. 
+    </p>
+    <p>
+        As we look to the future, candidates must remain adaptable in their approach, continually tuning their CVs and application methods to stay competitive in evolving market conditions. Leveraging digital tools and presenting a robust online presence will remain crucial for success in job hunting.
+    </p>
+        </div>
+    </section>
+
+
+    <section class="s5">
+        <div class="response">
+            <h1>Recruiter Insights Report</h1>
+
+<h2>🌟 Top 5 Recruiters by Resex Quota Consumed</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Resex Quota Consumed</th>
+            <th>CV Views</th>
+            <th>Searches</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>🏆 Sireesha Padmanabhan</td>
+            <td>28984</td>
+            <td>72595</td>
+            <td>34701</td>
+        </tr>
+        <tr>
+            <td>🥈 Ranganatha A. Raju</td>
+            <td>21394</td>
+            <td>45573</td>
+            <td>11252</td>
+        </tr>
+        <tr>
+            <td>🥉 S. Santosh Chaugule</td>
+            <td>13860</td>
+            <td>35389</td>
+            <td>33865</td>
+        </tr>
+        <tr>
+            <td>🏅 Goldy Rachel John</td>
+            <td>13311</td>
+            <td>32647</td>
+            <td>33775</td>
+        </tr>
+        <tr>
+            <td>🏅 Sudhagar Ganesan</td>
+            <td>9970</td>
+            <td>31689</td>
+            <td>21180</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>🚀 Top 10 Recruiters Hiring for Niche Roles</h2>
+<p>Niche roles being considered: Full Stack Developer, Cloud Security Consultant, Software Engineer, Financial Analyst, Data Scientist.</p>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Roles</th>
+            <th>Resex Quota Consumed</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>🏆 Sireesha Padmanabhan</td>
+            <td>Data Engineer, Data Scientist, Machine Learning Engineer, Backend Developer</td>
+            <td>28984</td>
+        </tr>
+        <tr>
+            <td>🥈 Ranganatha A. Raju</td>
+            <td>Software Developer, Data Engineer, Cloud Engineer, Full Stack Developer, AI Developer</td>
+            <td>21394</td>
+        </tr>
+        <tr>
+            <td>🥉 Goldy Rachel John</td>
+            <td>Data Scientist, ML Engineer, AI Researcher, Computer Vision Engineer</td>
+            <td>13311</td>
+        </tr>
+        <tr>
+            <td>🏅 Siva Murugesh</td>
+            <td>Recruiter, Oracle Cloud Consultant, HR Specialist</td>
+            <td>8398</td>
+        </tr>
+        <tr>
+            <td>🏅 Richa B. Pandey</td>
+            <td>DevOps Engineer, IT Support</td>
+            <td>7954</td>
+        </tr>
+        <tr>
+            <td>🏅 Ramya D. Shanmugam</td>
+            <td>Security Engineer, Cloud Security Consultant, IAM Consultant</td>
+            <td>7502</td>
+        </tr>
+        <tr>
+            <td>🏅 Priyadarshani Padhy</td>
+            <td>CRM Developer, Business Analyst</td>
+            <td>6878</td>
+        </tr>
+        <tr>
+            <td>🏅 Nithya A. Rajendran</td>
+            <td>Financial Analyst, Oracle Consultant, Billing Specialist</td>
+            <td>8204</td>
+        </tr>
+        <tr>
+            <td>🏅 Ashwini Dathakumar</td>
+            <td>Integration Developer, Data Engineer</td>
+            <td>4738</td>
+        </tr>
+        <tr>
+            <td>🏅 Tanisha Baluja</td>
+            <td>Software Developer, Backend Developer</td>
+            <td>7378</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>🏆 Focused Recruiters for Specific Hiring Categories</h2>
+<ul>
+    <li><strong>a) Senior Hiring</strong>: 
+        <ul>
+            <li>1. 🥇 S. Santosh Chaugule - 7%</li>
+            <li>2. 🥈 Sudhagar Ganesan - 7%</li>
+            <li>3. 🥉 Ranganatha A. Raju - 9%</li>
+        </ul>
+    </li>
+    <li><strong>b) Female Hiring (Diversity Hiring)</strong>: 
+        <ul>
+            <li>1. 🥇 Nithya A. Rajendran - 43%</li>
+            <li>2. 🥈 Sudhagar Ganesan - 38%</li>
+            <li>3. 🥉 Sireesha Padmanabhan - 36%</li>
+        </ul>
+    </li>
+    <li><strong>c) Fresher Hiring</strong>: 
+        <ul>
+            <li>1. 🥇 S. Santosh Chaugule - 14%</li>
+            <li>2. 🥈 Ashwini Raghu - 19%</li>
+            <li>3. 🥉 Nandini Gajendran - 15%</li>
+        </ul>
+    </li>
+    <li><strong>d) Premium Hiring</strong>: 
+        <ul>
+            <li>1. 🥇 D.A. Puttaswamy - 4%</li>
+            <li>2. 🥈 S. Santosh Chaugule - 3%</li>
+            <li>3. 🥉 K.G. Jain - 8%</li>
+        </ul>
+    </li>
+</ul>
+        </div>
+    </section>
+
+    <section class="s6">
+        <div class="response">
+            <h1 style="color: #fff;">Competitor and Industry Insights: Accenture vs Competitors</h1>
+
+<div class="summary">
+    <h2>1. Gender Demand Comparison</h2>
+    <table>
+        <tr>
+            <th>Company</th>
+            <th>Gender %</th>
+        </tr>
+        <tr>
+            <td>Accenture Solutions Pvt Ltd</td>
+            <td>47%</td>
+        </tr>
+        <tr>
+            <td>Capgemini Technology Services</td>
+            <td>47%</td>
+        </tr>
+        <tr>
+            <td>Cognizant Technology Solutions</td>
+            <td>29%</td>
+        </tr>
+        <tr>
+            <td>IBM India Pvt. Limited</td>
+            <td>41%</td>
+        </tr>
+        <tr>
+            <td>Tata Consultancy Services</td>
+            <td>27%</td>
+        </tr>
+        <tr>
+            <td>Tech Mahindra Ltd.</td>
+            <td>22%</td>
+        </tr>
+        <tr>
+            <td>Wipro Limited</td>
+            <td>24%</td>
+        </tr>
+        <tr>
+            <td>Hcl Technologies Limited</td>
+            <td>17%</td>
+        </tr>
+        <tr>
+            <td>Infosys Limited</td>
+            <td>28%</td>
+        </tr>
+        <tr>
+            <td><strong>Industry Average</strong></td>
+            <td><strong>33%</strong></td>
+        </tr>
+    </table>
+    <div class="insight">
+        <strong>Insights:</strong>
+        <ul>
+            <li>Accenture and Capgemini lead gender diversity in hiring, indicating an inclusive culture.</li>
+            <li>Competitors like Cognizant and HCL show significant gaps in gender representation.</li>
+            <li>Maintaining diversity can enhance brand reputation and attract top talent.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="summary">
+    <h2>2. Premium CV Demand Comparison</h2>
+    <table>
+        <tr>
+            <th>Company</th>
+            <th>Premium %</th>
+        </tr>
+        <tr>
+            <td>Accenture Solutions Pvt Ltd</td>
+            <td>10%</td>
+        </tr>
+        <tr>
+            <td>Capgemini Technology Services</td>
+            <td>9%</td>
+        </tr>
+        <tr>
+            <td>Cognizant Technology Solutions</td>
+            <td>8%</td>
+        </tr>
+        <tr>
+            <td>IBM India Pvt. Limited</td>
+            <td>15%</td>
+        </tr>
+        <tr>
+            <td>Tata Consultancy Services</td>
+            <td>10%</td>
+        </tr>
+        <tr>
+            <td>Tech Mahindra Ltd.</td>
+            <td>13%</td>
+        </tr>
+        <tr>
+            <td>Wipro Limited</td>
+            <td>12%</td>
+        </tr>
+        <tr>
+            <td>Hcl Technologies Limited</td>
+            <td>8%</td>
+        </tr>
+        <tr>
+            <td>Infosys Limited</td>
+            <td>17%</td>
+        </tr>
+        <tr>
+            <td><strong>Industry Average</strong></td>
+            <td><strong>11%</strong></td>
+        </tr>
+    </table>
+    <div class="insight">
+        <strong>Insights:</strong>
+        <ul>
+            <li>Accenture's premium CV demand at 10% is competitive but lower than leaders like IBM and Infosys.</li>
+            <li>Higher premium percentages indicate stronger talent attraction strategies among peers.</li>
+            <li>Improving premium CV outreach may solidify Accenture's position in the talent market.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="summary">
+    <h2>3. Demand Comparison in Top Cities</h2>
+    <table>
+        <tr>
+            <th>City</th>
+            <th>Accenture %</th>
+            <th>Competitors %</th>
+            <th>Industry %</th>
+        </tr>
+        <tr>
+            <td>Bengaluru</td>
+            <td>29%</td>
+            <td>34%</td>
+            <td>31%</td>
+        </tr>
+        <tr>
+            <td>Chennai</td>
+            <td>9%</td>
+            <td>11%</td>
+            <td>10%</td>
+        </tr>
+        <tr>
+            <td>Delhi-NCR</td>
+            <td>15%</td>
+            <td>9%</td>
+            <td>10%</td>
+        </tr>
+        <tr>
+            <td>Hyderabad</td>
+            <td>14%</td>
+            <td>22%</td>
+            <td>17%</td>
+        </tr>
+        <tr>
+            <td>Kolkata</td>
+            <td>3%</td>
+            <td>3%</td>
+            <td>3%</td>
+        </tr>
+        <tr>
+            <td>Mumbai</td>
+            <td>10%</td>
+            <td>4%</td>
+            <td>7%</td>
+        </tr>
+        <tr>
+            <td>Pune</td>
+            <td>12%</td>
+            <td>13%</td>
+            <td>12%</td>
+        </tr>
+        <tr>
+            <td><strong>Others</strong></td>
+            <td><strong>7%</strong></td>
+            <td><strong>2%</strong></td>
+            <td><strong>5%</strong></td>
+        </tr>
+    </table>
+    <div class="insight">
+        <strong>Insights:</strong>
+        <ul>
+            <li>Bengaluru remains a hub, but Accenture trails in Hyderabad where competition is fierce.</li>
+            <li>Increased hiring in Delhi-NCR suggests potential for expansion in this market.</li>
+            <li>Targeted branding and recruitment campaigns could enhance Accenture's share in other regions.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="summary">
+    <h2>4. Hiring Segments Comparison</h2>
+    <table>
+        <tr>
+            <th>Segment</th>
+            <th>Accenture %</th>
+            <th>Competitors %</th>
+            <th>Industry %</th>
+        </tr>
+        <tr>
+            <td>BPO</td>
+            <td>5%</td>
+            <td>2%</td>
+            <td>2%</td>
+        </tr>
+        <tr>
+            <td>Core Engineering</td>
+            <td>2%</td>
+            <td>4%</td>
+            <td>2%</td>
+        </tr>
+        <tr>
+            <td>Finance</td>
+            <td>16%</td>
+            <td>4%</td>
+            <td>3%</td>
+        </tr>
+        <tr>
+            <td>Health</td>
+            <td>1%</td>
+            <td>0%</td>
+            <td>0%</td>
+        </tr>
+        <tr>
+            <td>HR</td>
+            <td>4%</td>
+            <td>1%</td>
+            <td>2%</td>
+        </tr>
+        <tr>
+            <td>IT</td>
+            <td>58%</td>
+            <td>81%</td>
+            <td>85%</td>
+        </tr>
+        <tr>
+            <td>Miscellaneous</td>
+            <td>9%</td>
+            <td>6%</td>
+            <td>4%</td>
+        </tr>
+        <tr>
+            <td>Purchase & Logistics</td>
+            <td>2%</td>
+            <td>1%</td>
+            <td>0%</td>
+        </tr>
+        <tr>
+            <td>Sales & Marketing</td>
+            <td>2%</td>
+            <td>1%</td>
+            <td>0%</td>
+        </tr>
+        <tr>
+            <td>Top Management</td>
+            <td>1%</td>
+            <td>0%</td>
+            <td>0%</td>
+        </tr>
+    </table>
+    <div class="insight">
+        <strong>Insights:</strong>
+        <ul>
+            <li>Accenture excels in Finance and BPO segments but must enhance its IT segment hiring strategy.</li>
+            <li>Competitors significantly dominate in Core Engineering and IT roles, representing a critical gap.</li>
+            <li>Fostering a diverse hiring strategy across multiple segments may strengthen Accenture's market position.</li>
+        </ul>
+    </div>
+</div>
+
+<h2>5. Role-Based CTC and Experience Comparison</h2>
+<table>
+    <tr>
+        <th>Role</th>
+        <th>Accenture (CTC, Experience)</th>
+        <th>Competitors (CTC, Experience)</th>
+        <th>Industry (CTC, Experience)</th>
+    </tr>
+    <tr>
+        <td>Back End Developer</td>
+        <td>₹11.46L, 5.61 years</td>
+        <td>₹12.61L, 6.12 years</td>
+        <td>₹13.25L, 6 years</td>
+    </tr>
+    <tr>
+        <td>Full Stack Developer</td>
+        <td>₹10.01L, 4.68 years</td>
+        <td>₹11.82L, 5.6 years</td>
+        <td>₹11.34L, 5.5 years</td>
+    </tr>
+    <tr>
+        <td>Software Development - Other</td>
+        <td>₹8.73L, 4.32 years</td>
+        <td>₹10.30L, 5.03 years</td>
+        <td>₹10.20L, 5 years</td>
+    </tr>
+    <tr>
+        <td>Functional Consultant</td>
+        <td>₹14.19L, 7.52 years</td>
+        <td>₹13.99L, 7.74 years</td>
+        <td>₹14.55L, 7.5 years</td>
+    </tr>
+    <tr>
+        <td>Technical Lead</td>
+        <td>₹19.76L, 10.55 years</td>
+        <td>₹17.81L, 9.41 years</td>
+        <td>₹18.65L, 9.5 years</td>
+    </tr>
+    <tr>
+        <td>Data Engineer</td>
+        <td>₹10.58L, 4.91 years</td>
+        <td>₹11.77L, 5.68 years</td>
+        <td>₹11.25L, 5.2 years</td>
+    </tr>
+</table>
+
+<div class="insight">
+    <strong>Insights:</strong>
+    <ul>
+        <li>Accenture's CTC offerings are competitive; however, it trails behind competitors in key roles.</li>
+        <li>Higher experience levels in competitor metrics suggest that candidates may prefer brands with stronger career growth prospects.</li>
+        <li>Optimizing CTC packages can create a more competitive edge in attracting and retaining talent.</li>
+    </ul>
+</div>
+
+<h2>6. Detailed Insights and Comparison</h2>
+<div class="comparison">
+    <p>Accenture maintains a strong position in terms of gender diversity with 47% representation, which is above the industry average of 33%. In terms of premium CV demand, Accenture stands at 10%, while competitors like IBM and Infosys offer better incentives attracting talent with 15% and 17% respectively. The hiring distribution shows that Accenture tends to prioritize IT roles at 58%, compared to competitors that focus heavily on IT at 81% (Capgemini).</p>
+    
+    <p>In BPO and Finance domains, Accenture has a notable edge with 5% and 16% hiring focus respectively, while competitors have less emphasis here. However, several companies like Capgemini and TCS excel in hiring experienced professionals in other technical segments, while Accenture has a vast share of entry-level to mid-level roles.</p>
+    
+    <p>For major cities, Accenture performs robustly in Bengaluru, but faces stiff competition in Hyderabad where competitors are significantly active. Overall, Accenture’s compensation packages for technical roles are competitive, though edging towards the lower side compared to some key competitors like IBM and Cognizant.</p>
+    
+    <p>In branding context, there is a need for Accenture to highlight not only the diversity in hiring but also career progression opportunities. Enhancing employer branding through testimonials and showcasing employee achievements can foster a competitive atmosphere against rivals. Additionally, greater visibility in less saturated markets may yield potential talent pools.</p>
+    
+    <p>In conclusion, moving forward, Accenture could benefit from enhancing its premium CV outreach and exploring talent acquisition strategies that emphasize diversity, competitive hiring packages, and branding initiatives to draw more high-quality candidates and strengthen its market position.</p>
+</div>
+        </div>
+    </section>
+
+    <section class="s7">
+        <div class="response">
+            <div class="container">
+                <h1>Cross-Sell and Up-Sell Opportunities Report</h1>
+        
+                <section>
+                    <h2>Product Upsell Opportunities</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Current Usage</th>
+                                <th>Opportunity</th>
+                                <th>Upsell Opportunity</th>
+                                <th>Churn/Upsell Flag</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CVACCESS</td>
+                                <td>1,531,500 out of 1,590,000 available</td>
+                                <td>Close to the upper limit of current usage</td>
+                                <td>Offer additional capacity or upgrade to a higher-tier plan.</td>
+                                <td>Upsell</td>
+                            </tr>
+                            <tr class="underutilized">
+                                <td>BRANDED_EMAIL</td>
+                                <td>219,514 out of 250,000 available</td>
+                                <td>Potential underutilization</td>
+                                <td>Recommend upgrade to a higher-tier plan with more features or expansion of usage.</td>
+                                <td>Upsell</td>
+                            </tr>
+                            <tr>
+                                <td>HOT_VACANCY</td>
+                                <td>382,239 out of 411,000 available</td>
+                                <td>Close to the usage limit</td>
+                                <td>Offer an upgrade with more capacity or additional features like job posting management.</td>
+                                <td>Upsell</td>
+                            </tr>
+                            <tr class="underutilized">
+                                <td>EHIRE</td>
+                                <td>0 out of 20 available</td>
+                                <td>Not utilized yet</td>
+                                <td>Explore if additional services or training could help with usage, or upsell to a higher plan.</td>
+                                <td>Churn</td>
+                            </tr>
+                            <tr>
+                                <td>TALENT_PULSE</td>
+                                <td>0 out of 1 available</td>
+                                <td>Not utilized yet</td>
+                                <td>Offer training or an introductory consultation to unlock more value from the product.</td>
+                                <td>Churn</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+        
+                <section>
+                    <h2>General Upsell Strategy</h2>
+                    <ul>
+                        <li><strong>Check for unused or underutilized products:</strong> Reach out to understand why they aren't being used. Offering additional features, training, or integrations can increase value.</li>
+                        <li><strong>Increase capacity for heavily utilized products:</strong> Offer additional capacity or higher-tier plans for products like CVACCESS, HOT_VACANCY, and BRANDED_EMAIL.</li>
+                        <li><strong>Package Deals:</strong> Consider bundle pricing or volume discounts for heavily used products.</li>
+                        <li><strong>Upsell Premium Features:</strong> Offer advanced features (e.g., reporting, analytics, integrations) for products nearing their usage limits.</li>
+                    </ul>
+                </section>
+        
+                <section>
+                    <h2>Cross-Sell Opportunities</h2>
+                    <h3>1. Hirist.com (IT Hiring)</h3>
+                    <p><strong>Why Accenture Should Use It:</strong> Hirist offers high-quality IT talent, particularly for roles in quality assurance, testing, and development, which is critical for Accenture's IT-driven projects.</p>
+                    <p><strong>Key Benefits:</strong></p>
+                    <ul>
+                        <li>Over 30% of job postings focus on the Quality Department.</li>
+                        <li>Over 10,000 CV views from candidates in the Quality Department.</li>
+                        <li>Access to mid-to-senior-level talent with a CTC of 10 LPA+.</li>
+                    </ul>
+        
+                    <h3>2. IIM Jobs (Management Hiring)</h3>
+                    <p><strong>Why Accenture Should Use It:</strong> IIM Jobs specializes in sourcing management professionals, ideal for leadership and strategic hiring needs.</p>
+                    <p><strong>Key Benefits:</strong></p>
+                    <ul>
+                        <li>16% of CV views from premium profiles.</li>
+                        <li>Access to talent from prestigious colleges and top-tier leadership roles.</li>
+                        <li>4,000+ premium CV views, ensuring a large pool of active candidates for management roles.</li>
+                    </ul>
+        
+                    <h3>3. DOSELECT (Assessment for Shortlisting)</h3>
+                    <p><strong>Why Accenture Should Use It:</strong> DOSELECT streamlines the shortlisting and assessment process, reducing time spent on unqualified candidates and enhancing recruitment efficiency.</p>
+                    <p><strong>Key Benefits:</strong></p>
+                    <ul>
+                        <li>Efficient candidate filtering, ensuring that over 5% of applications are relevant.</li>
+                        <li>Supports fresher recruitment with a focus on relevant CV views.</li>
+                        <li>Automates assessment, reducing hiring time for both fresher and experienced roles.</li>
+                    </ul>
+                </section>
+        
+                <section class="summary">
+                    <h2>Summary of Why Accenture Should Invest in These Products</h2>
+                    <ul>
+                        <li>Hirist provides specialized hiring for IT talent, crucial for Accenture’s IT projects.</li>
+                        <li>IIM Jobs helps source top-tier management professionals for leadership and strategic roles.</li>
+                        <li>DOSELECT enhances recruitment efficiency by automating candidate assessment and shortlisting, improving overall quality of hires.</li>
+                    </ul>
+                </section>
+        </div>
+    </section>
+    <!-- <div class="chat-list"></div>
+    <div class="typing-area" style="width: 100%;">
+        <form action="#" class="typing-form">
+            <div class="input-wrapper">
+                <input type="text" placeholder="Enter a prompt here" class="typing-input" required>
+                <button class="icon material-symbols-rounded">send</button>
+            </div>
+            <div class="action-buttons">
+                <span class="icon material-symbols-rounded">light_mode</span>
+                <span class="icon material-symbols-rounded">delete</span>
+            </div>
+        </form>
+        <p class="disclaimer-text">InsightEdge and its subsequent models are in training phase & may display inaccurate info, including about people, so double check its responses.</p>
+    </div> -->
+
+    <div class="chat-list"></div>
+<div class="typing-area" style="width: 100%;">
+    <form action="#" class="typing-form">
+        <div class="input-wrapper">
+            <input type="text" placeholder="Enter a prompt here" class="typing-input" required>
+            <button type="submit" class="icon material-symbols-rounded">send</button>
+        </div>
+        <div class="action-buttons">
+            <span class="icon material-symbols-rounded">light_mode</span>
+            <!-- <span class="icon material-symbols-rounded">delete</span> -->
+        </div>
+    </form>
+    <p class="disclaimer-text">
+        InsightEdge and its subsequent models are in the training phase & may display inaccurate info, including about people,
+        so double-check its responses.
+    </p>
+</div>
+
+
+    <script>
+        function toggleDisplay(sectionClass) {
+    setTimeout(() => {
+        const element = document.querySelector(sectionClass);
+        element.style.display = element.style.display === "none" || !element.style.display ? "block" : "none";
+    }, 1500); // Delay of 2000 milliseconds (2 seconds)
+}
+
+
+        
+
+        const labels = [
+            'Sep-22', 'Oct-22', 'Nov-22', 'Dec-22', 'Jan-23', 'Feb-23', 'Mar-23',
+            'Apr-23', 'May-23', 'Jun-23', 'Jul-23', 'Aug-23',
+            'Sep-23', 'Oct-23', 'Nov-23', 'Dec-23',
+            'Jan-24', 'Feb-24', 'Mar-24', 'Apr-24', 'May-24', 'Jun-24', 'Jul-24', 'Aug-24', 'Sep-24'
+        ];
+
+        const cvViewsData = [
+            315138, 237360, 245203, 221644, 206420, 181682, 192886,
+            182973, 188508, 181961, 193242, 210014,
+            287885, 268873, 282049, 250826,
+            236881, 241776, 245539, 239520, 276673, 254366, 307854, 308041, 355134
+        ];
+
+        const searchesData = [
+            223017, 163933, 163228, 150034, 159394, 131036, 140903,
+            123273, 140216, 158735, 153332, 157262,
+            188087, 171767, 170070, 153442,
+            147921, 153189, 168936, 163701, 177074, 155465, 166860, 161759, 186027
+        ];
+
+        const resdexQuotaData = [
+            163412, 114643, 160487, 139945, 136565, 132102, 106151,
+            116051, 102413, 119010, 111571, 117424,
+            149212, 137985, 136523, 121621,
+            138403, 141430, 143843, 119125, 149996, 146641, 170857, 151175, 167074
+        ];
+
+        const options = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    color: '#ffffff'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#ffffff' // White color for y-axis labels
+                    },
+                    grid: {
+                        color: '#ffffff22', // Semi-transparent white for grid lines
+                    },
+                    title: {
+                        color: '#ffffff', // White color for axis title
+                    }
+                },
+                x: {
+                    ticks: {
+                    color: '#ffffff' // White color for x-axis labels
+                },
+                grid: {
+                    color: '#ffffff22', // Semi-transparent white for grid lines
+                }
+                }
+            }
+        };
+
+        new Chart(document.getElementById('cvViewsChart'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'CV Views',
+                    data: cvViewsData,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1,
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: options
+        });
+
+        new Chart(document.getElementById('searchesChart'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Searches',
+                    data: searchesData,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: options
+        });
+
+        new Chart(document.getElementById('resdexQuotaChart'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Resdex Quota Consumed',
+                    data: resdexQuotaData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: options
+        });
+
+        // Bar chart for CV Views over the last three years
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2020', '2021', '2022', '2023', '2024 (till Oct)'],
+                datasets: [{
+                    label: 'CV Views',
+                    data: [1919589, 4593327, 3496725, 2627319, 2844223],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.4)',  // Light teal for 2020
+                        'rgba(75, 192, 192, 0.6)',  // Teal for 2021
+                        'rgba(75, 192, 192, 0.8)',  // Darker teal for 2022
+                        'rgba(75, 192, 192, 1)',     // Dark teal for 2023
+                        'rgba(255, 99, 132, 0.4)'   // Light red for 2024 (till Oct)
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Number of CV Views'
+                        },
+                        grid: {
+                            color: '#ffffff'
+                        },
+                        ticks: {
+                            color: '#ffffff'
+                        },
+                        title: {
+                            color: '#ffffff',
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'CV Views from 2020 to 2024'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.dataset.label + ': ' + tooltipItem.raw;
+                            }
+                        }
+                    }
+                },
+                elements: {
+                    bar: {
+                        borderWidth: 2
+                    }
+                },
+            }
+        });
+
+        // Adding YoY percentage labels on top of bars
+        const percentages = [null, 139, -24, -25, 8]; // YoY percentage values
+        myChart.data.datasets[0].data.forEach((value, index) => {
+            const percentage = percentages[index];
+            const yPosition = myChart.getDatasetMeta(0).data[index].y;
+            const xPosition = myChart.getDatasetMeta(0).data[index].x;
+
+            // Determine the color based on the sign of percentage
+            const arrowColor = percentage < 0 ? 'red' : 'green';
+            const arrowSymbol = percentage < 0 ? '↓ ' : '↑ ';
+            const labelText = `${arrowSymbol}${Math.abs(percentage)}%`;
+
+            ctx.font = 'bold 12px Arial';
+            ctx.fillStyle = arrowColor;
+            ctx.fillText(labelText, xPosition - 10, yPosition - 10);
+        });
+    </script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</body>
+</html>
